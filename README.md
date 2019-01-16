@@ -14,3 +14,15 @@ https://git-scm.com/downloads
 
 Set up git bash:
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+Create a new WPILib Project named "FRC-7763".
+
+Navigate to the project in git bash
+
+Run the following:
+
+    git init
+    git remote add origin https://github.com/CaptnSisko/FRC-7763
+    git fetch --all
+    git reset --hard origin/master
+    git checkout testing
