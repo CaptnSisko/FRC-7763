@@ -14,6 +14,7 @@ https://git-scm.com/downloads
 
 Set up git bash:
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup (for reference)
+
     git config --global user.email "YOUR EMAIL HERE"
     git config --global user.name "YOUR USERNAME HERE"
 
