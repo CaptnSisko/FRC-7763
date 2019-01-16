@@ -64,4 +64,5 @@ public class Robot extends TimedRobot {
     if (pos < 0) coefficient *= -1;
     return pos * pos * coefficient;
   }
+  
 }
