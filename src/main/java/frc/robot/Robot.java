@@ -52,9 +52,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    _drive.tankDrive(_joystick.getRawAxis(1), _joystick.getRawAxis(5));
+    _drive.tankDrive(cookedStick(1),cookedStick(5));
 
     /* hold down btn1 to print stick values */
     //System.out.println("Hello World");
+  }
+
+  private double cookedStick(int axis) {
+    double coefficient = 1;
+    double pos = _joystick.getRawAxis(axis);
+    if (pos < 0) coefficient *= -1;
+    return pos * pos * coefficient;
   }
 }
