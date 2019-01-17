@@ -12,7 +12,7 @@ import java.lang.Math;
 /**
  * Handles calculations for driving the robot
  */
-public class Movement {
+public final class Movement {
     public static void drive() {
         double leftSpeed = processInput(RobotMap.getController().getRawAxis(1), 2, 1);
         double rightSpeed = processInput(RobotMap.getController().getRawAxis(5), 2, 1);
@@ -23,9 +23,9 @@ public class Movement {
      * Returns a processed value from -1 to 1 based on the input
      */
     private static double processInput(double val, double pow, double coefficient) {
-        if (val < 0) coefficient *= -1;
-        val = Math.pow(val, pow) * coefficient;
-        if (Math.abs(val) < 1) return val;
-        return val > 0 ? 1 : -1;
+        double outVal = Math.pow(val, pow) * coefficient;  // raises to power, multiplies by coefficient
+        outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
+        outVal = Math.max(1, Math.min(-1, outVal));  // bounds checking
+        return outVal;
       }
 }
