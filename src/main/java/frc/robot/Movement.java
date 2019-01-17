@@ -22,7 +22,7 @@ public final class Movement {
     /**
      * Returns a processed value from -1 to 1 based on the input
      */
-    private static double processInput(double val, double pow, double coefficient) {
+    public static double processInput(double val, double pow, double coefficient) {
         double outVal = Math.pow(val, pow) * coefficient;  // raises to power, multiplies by coefficient
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
         outVal = Math.max(1, Math.min(-1, outVal));  // bounds checking
