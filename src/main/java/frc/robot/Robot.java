@@ -25,9 +25,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    RobotMap.getDrive().tankDrive(
-      RobotMap.leftController.drive(RobotMap.getController().getRawAxis(1)), 
-      RobotMap.rightController.drive(RobotMap.getController().getRawAxis(5))
+    RobotMap.diffDrive.tankDrive(
+      RobotMap.leftController.drive(RobotMap.joystick.getRawAxis(1)), 
+      RobotMap.rightController.drive(RobotMap.joystick.getRawAxis(5))
       );
   }
 }
