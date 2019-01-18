@@ -57,10 +57,10 @@ public class DriveControl {
      */
     private double update() {
         assert acc >= 0 : "acc cannot be negative";  // safety check
+        acc += Math.abs(cnt - tgt)/5.0;
         if (Math.abs(cnt - tgt) < acc) {
             cnt = tgt;
         } else {
-            acc *= (1 + Math.abs(cnt - tgt)/5.0);
             cnt = tgt > cnt ? cnt + acc : cnt - acc;
         }
         return cnt;
