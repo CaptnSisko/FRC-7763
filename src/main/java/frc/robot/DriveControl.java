@@ -32,8 +32,7 @@ public class DriveControl {
     public DriveControl(double power, double coefficient, double acceleration) {
         pow = power;
         cft = coefficient;
-        acc = acceleration;
-        assert acc >= 0 : "acc cannot be negative";  // safety check
+        acc = Math.abs(acceleration);
     }
     
     /**
@@ -48,20 +47,14 @@ public class DriveControl {
     }
 
     public void setAcceleration(double acceleration) {
-        acc = acceleration;
-        assert acc >= 0 : "acc cannot be negative";  // safety check
+        acc = Math.abs(acceleration);
     }
 
     /**
      * runs a "step" of the acceleration
      */
     private double update() {
-        assert acc >= 0 : "acc cannot be negative";  // safety check
-        if (Math.abs(cnt - tgt) < acc) {
-            cnt = tgt;
-        } else {
-            cnt = tgt > cnt ? cnt + acc : cnt - acc;
-        }
+        cnt *= 1 + acc * (tgt - cnt);
         return cnt;
     }
 
