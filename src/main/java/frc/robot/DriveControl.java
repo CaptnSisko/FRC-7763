@@ -52,9 +52,10 @@ public class DriveControl {
 
     /**
      * runs a "step" of the acceleration
+     * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
-        cnt *= 1 + acc * (tgt - cnt);
+        cnt *= 1 + acc * (tgt - cnt);  // (tgt - cnt) will have the correct sign to make the acceleration go in the correct direction
         return cnt;
     }
 
