@@ -20,7 +20,7 @@ public class DriveControl {
     private double tgt = 0;  // target value
     private double cnt = 0;  // current value
 
-    DriveControl() {  // default constructor
+    public DriveControl() {  // default constructor
         pow = 1;
         cft = 1;
         acc = 1;
@@ -29,7 +29,7 @@ public class DriveControl {
     /** 
      *constructor that sets drive parameters
      */
-    DriveControl(double power, double coefficient, double acceleration) {
+    public DriveControl(double power, double coefficient, double acceleration) {
         pow = power;
         cft = coefficient;
         acc = acceleration;
