@@ -18,9 +18,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
 
-  DriveControl leftController = new DriveControl(2, 1, 0.05);
-  DriveControl rightController = new DriveControl(2, 1, 0.05);
-
   @Override
   public void teleopInit() {
     RobotMap.init();
@@ -29,8 +26,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     RobotMap.getDrive().tankDrive(
-      leftController.drive(RobotMap.getController().getRawAxis(1)), 
-      rightController.drive(RobotMap.getController().getRawAxis(5))
+      RobotMap.leftController.drive(RobotMap.getController().getRawAxis(1)), 
+      RobotMap.rightController.drive(RobotMap.getController().getRawAxis(5))
       );
   }
 }

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.drive.*;
 /**
  * Class to contain all robot parts. Increases organization and reduces occurances of magic numbers.
  */
-public class RobotMap {
+public final class RobotMap {
     private static Joystick joystick = new Joystick(0);
 
     private static WPI_TalonSRX motorFL = new WPI_TalonSRX(1);
@@ -26,6 +26,9 @@ public class RobotMap {
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
 
     private static DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
+
+    public static DriveControl leftController = new DriveControl(2, 1, 0.05);
+    public static DriveControl rightController = new DriveControl(2, 1, 0.05);
 
     public static void init() {
         motorFL.configFactoryDefault();
