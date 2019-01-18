@@ -60,6 +60,7 @@ public class DriveControl {
         if (Math.abs(cnt - tgt) < acc) {
             cnt = tgt;
         } else {
+            acc *= (1 + Math.abs(cnt - tgt)/5.0);
             cnt = tgt > cnt ? cnt + acc : cnt - acc;
         }
         return cnt;
