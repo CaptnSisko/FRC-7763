@@ -10,7 +10,7 @@ package frc.robot;
 import java.lang.Math;
 
 /**
- * Used for control of drive motors. Designed to be insantiated, with an instance controlling 1 motor.
+ * Used for control of drive motors. Designed to be insantiated, with an instance controlling 1 motor
  */
 public class DriveControl {
 
