@@ -14,9 +14,12 @@ import java.lang.Math;
  */
 public final class Movement {
     public static void drive() {
-        double leftSpeed = processInput(RobotMap.getController().getRawAxis(1), 2, 1);
-        double rightSpeed = processInput(RobotMap.getController().getRawAxis(5), 2, 1);
+        double pow = 2;
+        double cft = 1;
+        double leftSpeed = processInput(RobotMap.getController().getRawAxis(1), pow, cft);
+        double rightSpeed = processInput(RobotMap.getController().getRawAxis(5), pow, 1);
         RobotMap.getDrive().tankDrive(leftSpeed, rightSpeed);
+
     }
 
     /**
