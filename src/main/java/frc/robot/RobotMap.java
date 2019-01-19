@@ -26,8 +26,17 @@ public final class RobotMap {
     public static Joystick joystick = new Joystick(0);
     public static DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
 
-    public static DriveControl leftController = new DriveControl(2, 1, 0.05);
-    public static DriveControl rightController = new DriveControl(2, 1, 0.05);
+    /**
+     * TO DO:
+     * better defaults
+     * shuffleboard adjustability
+     */
+    public static double power = 2;
+    public static double coefficient = 1;
+    public static double constAccel = 0.1;
+    public static double propAccel = 0.2;
+    public static DriveControl leftController = new DriveControl(power, coefficient, constAccel, propAccel);
+    public static DriveControl rightController = new DriveControl(power, coefficient, constAccel, propAccel);
 
     public static void init() {
         motorFL.configFactoryDefault();
