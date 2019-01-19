@@ -16,23 +16,27 @@ public class DriveControl {
 
     private double pow;  // exponent for processInput
     private double cft;  // coefficient for processInput
-    private double acc;  // acceleration
+    private double accCon;  // constant acceleration
+    private double accPro;  // proportional acceleration
+    private double inc;  // increment for current step
     private double tgt = 0;  // target value
     private double cnt = 0;  // current value
 
     public DriveControl() {  // default constructor
         pow = 1;
         cft = 1;
-        acc = 1;
+        accCon = 0.5;  // TODO: pick better defaults
+        accPro = 0.5;
     }
 
     /** 
      *constructor that sets drive parameters
      */
-    public DriveControl(double power, double coefficient, double acceleration) {
+    public DriveControl(double power, double coefficient, double constant, double proportional) {
         pow = power;
         cft = coefficient;
-        acc = Math.abs(acceleration);
+        accCon = Math.abs(constant);
+        accPro = Math.abs(proportional);
     }
     
     /**
@@ -46,8 +50,9 @@ public class DriveControl {
         cft = coefficient;
     }
 
-    public void setAcceleration(double acceleration) {
-        acc = Math.abs(acceleration);
+    public void setAcceleration(double constant, double proportional) {
+        accCon = Math.abs(constant);
+        accPro = Math.abs(proportional);
     }
 
     /**
@@ -55,11 +60,11 @@ public class DriveControl {
      * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
-        acc += Math.abs(cnt - tgt)/5.0;
-        if (Math.abs(cnt - tgt) < acc) {
+        inc = accCon + Math.abs(cnt - tgt) * accPro;
+        if (Math.abs(cnt - tgt) < accCon) {
             cnt = tgt;
         } else {
-            cnt = tgt > cnt ? cnt + acc : cnt - acc;
+            cnt = tgt > cnt ? cnt + inc : cnt - inc;
         }
         return cnt;
     }
