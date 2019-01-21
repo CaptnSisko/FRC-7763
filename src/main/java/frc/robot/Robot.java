@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     RobotMap.init();
-    Telemetry.update();
+    Telemetry.init();
   }
 
   @Override
