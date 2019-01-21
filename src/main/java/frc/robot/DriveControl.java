@@ -68,6 +68,11 @@ public class DriveControl {
      * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
+        pow = Telemetry.getPower();
+        cft = Telemetry.getCoefficient();
+        accCon = Telemetry.getAccConstant();
+        accPro = Telemetry.getAccProportion();
+
         inc = accCon + Math.abs(cnt - tgt) * accPro;
         if (Math.abs(cnt - tgt) < accCon) {
             cnt = tgt;
