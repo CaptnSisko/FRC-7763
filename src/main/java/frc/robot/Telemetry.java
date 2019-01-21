@@ -17,25 +17,26 @@ import java.util.Map;
 
 
     private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry coeff,pow,accCon,accPro = null;
+    private static NetworkTableEntry coeff, pow, accCon, accPro;
 
     public static void init() {
-        NetworkTableEntry coeff = DriveControl.add("Coefficient", 1.0)
+        coeff = DriveControl.add("Coefficient", 1.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("Min", -1, "Max", 1))
         .getEntry();
-        NetworkTableEntry pow = DriveControl.add("Power", 2.0)
+        pow = DriveControl.add("Power", 2.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("Min", 1, "Max", 5))
         .getEntry();
-        NetworkTableEntry accCon = DriveControl.add("Constant Accelecation", 0.5)
+        accCon = DriveControl.add("Constant Accelecation", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("Min", 0, "Max", 2))
         .getEntry();
-        NetworkTableEntry accPro = DriveControl.add("Proportional Accelecation", 0.5)
+        accPro = DriveControl.add("Proportional Accelecation", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("Min", 0, "Max", 2))
         .getEntry();
+
         Shuffleboard
         .getTab("DriveControl")
         .add("Drive Base", RobotMap.diffDrive)
