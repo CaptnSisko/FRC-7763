@@ -68,11 +68,10 @@ public class DriveControl {
      * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
-        pow = Telemetry.getPower();
-        cft = Telemetry.getCoefficient();
         accCon = Telemetry.getAccConstant();
         accPro = Telemetry.getAccProportion();
-
+        pow = Telemetry.getPower();
+        cft = Telemetry.getCoefficient();
         inc = accCon + Math.abs(cnt - tgt) * accPro;
         if (Math.abs(cnt - tgt) < accCon) {
             cnt = tgt;
@@ -95,6 +94,7 @@ public class DriveControl {
      * this function should be used when driving
      */
     public double drive(double input) {
+        //System.out.println(pow);
         return set(processInput(input));
     }
 
@@ -102,9 +102,11 @@ public class DriveControl {
      * Returns a processed value from -1 to 1 based on the input
      */
     private double processInput(double val) {
-        double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
+        //double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
+        double outVal = Math.pow(Math.abs(val), pow) * cft;
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
         outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking
+        System.out.println(outVal);
         return outVal;
     }
 }

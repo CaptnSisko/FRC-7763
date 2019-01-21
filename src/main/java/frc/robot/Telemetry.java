@@ -16,50 +16,54 @@ import java.util.Map;
  public final class Telemetry {
 
 
-    private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
+    //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
     private static NetworkTableEntry coeff, pow, accCon, accPro;
+    private static NetworkTableEntry test = Shuffleboard.getTab("Drive Control").add("test", 0.0).getEntry();
 
     public static void init() {
-        coeff = DriveControl.add("Coefficient", 1.0)
+        coeff = Shuffleboard.getTab("Drive Control")
+        .add("Coefficient", 1.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("Min", -1, "Max", 1))
+        .withProperties(Map.of("min", -1.0, "max", 1.0))
         .getEntry();
-        pow = DriveControl.add("Power", 2.0)
+        pow = Shuffleboard.getTab("Drive Control")
+        .add("Power", 2.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("Min", 1, "Max", 5))
+        .withProperties(Map.of("min", 1.0, "max", 5.0))
         .getEntry();
-        accCon = DriveControl.add("Constant Accelecation", 0.5)
+        accCon = Shuffleboard.getTab("Drive Control")
+        .add("Constant Accelecation", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("Min", 0, "Max", 2))
+        .withProperties(Map.of("min", 0.0, "max", 2.0))
         .getEntry();
-        accPro = DriveControl.add("Proportional Accelecation", 0.5)
+        accPro = Shuffleboard.getTab("Drive Control")
+        .add("Proportional Accelecation", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("Min", 0, "Max", 2))
+        .withProperties(Map.of("min", 0.0, "max", 2.0))
         .getEntry();
 
-        Shuffleboard
-        .getTab("DriveControl")
+        Shuffleboard.getTab("Drive Control")
         .add("Drive Base", RobotMap.diffDrive)
         .withWidget(BuiltInWidgets.kDifferentialDrive);
     }
 
     public static void update() {
-        //DriveControl.add("left", RobotMap.leftController.getTarget());
+        test.setDouble(pow.getValue().getDouble());
     }
 
     public static double getCoefficient() {
-        return coeff.getDouble(1.0);
+        return coeff.getValue().getDouble();
     }
 
     public static double getPower() {
-        return pow.getDouble(2.0);
+        return pow.getValue().getDouble();
     }
 
     public static double getAccConstant() {
-        return accCon.getDouble(0.5);
+        return accCon.getValue().getDouble();
     }
 
     public static double getAccProportion() {
-        return accPro.getDouble(0.5);
+        return accPro.getValue().getDouble();
     }
  }
