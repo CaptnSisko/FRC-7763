@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     RobotMap.init();
+    Telemetry.update();
   }
 
   @Override
