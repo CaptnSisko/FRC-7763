@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 
 
@@ -15,7 +14,12 @@ import frc.robot.*;
     private static ShuffleboardTab DriveControl = Shuffleboard.getTab("DriveControl");
     
     public static void init() {
-        smartDash.add("test", 17);
-        smartDash.add()
+        DriveControl.add("test", 17);
+        DriveControl.add("left", 0);
     }
+
+    public static void update() {
+        DriveControl.add("left", RobotMap.leftController.getSpeed());
+    }
+
  }

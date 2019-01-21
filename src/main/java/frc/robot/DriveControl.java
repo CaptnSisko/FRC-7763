@@ -55,6 +55,14 @@ public class DriveControl {
         accPro = Math.abs(proportional);
     }
 
+    public double getSpeed() {
+        return cnt;
+    }
+
+    public double getTarget() {
+        return tgt;
+    }
+
     /**
      * runs a "step" of the acceleration
      * acc is proportion of remaining distance to target that a step will cover
