@@ -4,14 +4,17 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.networktables.NetworkTableEntry;
+
 
 import java.util.Map;
 
- public final class Telemetry  {
+ public final class Telemetry {
+
 
     private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
     private static NetworkTableEntry coeff,pow,accCon,accPro = null;
@@ -33,6 +36,10 @@ import java.util.Map;
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("Min", 0, "Max", 2))
         .getEntry();
+        Shuffleboard
+        .getTab("DriveControl")
+        .add("Drive Base", RobotMap.diffDrive)
+        .withWidget(BuiltInWidgets.kDifferentialDrive);
     }
 
     public static void update() {
