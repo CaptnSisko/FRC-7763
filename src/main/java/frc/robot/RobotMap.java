@@ -31,9 +31,9 @@ public final class RobotMap {
      * better defaults
      * shuffleboard adjustability
      */
-    public static double power = 2;
-    public static double offset = 0.25;
-    public static double deadZone = 0.1;
+    public static double power = 3;
+    public static double offset = 0.05;
+    public static double deadZone = 0.05;
     public static double constAccel = 0.1;
     public static double propAccel = 0.2;
     public static DriveControl leftController = new DriveControl(power, offset, deadZone, constAccel, propAccel);
