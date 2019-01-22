@@ -17,12 +17,12 @@ import java.util.Map;
 
 
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry coeff, pow, accCon, accPro;
+    private static NetworkTableEntry offset, pow, accCon, accPro;
     private static NetworkTableEntry test = Shuffleboard.getTab("Drive Control").add("test", 0.0).getEntry();
 
     public static void init() {
-        coeff = Shuffleboard.getTab("Drive Control")
-        .add("Coefficient", 1.0)
+        offset = Shuffleboard.getTab("Drive Control")
+        .add("Offset", 1.0)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", -1.0, "max", 1.0))
         .getEntry();
@@ -51,8 +51,8 @@ import java.util.Map;
         test.setDouble(pow.getValue().getDouble());
     }
 
-    public static double getCoefficient() {
-        return coeff.getValue().getDouble();
+    public static double getOffset() {
+        return offset.getValue().getDouble();
     }
 
     public static double getPower() {
