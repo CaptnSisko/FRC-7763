@@ -21,10 +21,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     RobotMap.init();
+    Telemetry.init();
   }
 
   @Override
   public void teleopPeriodic() {
+    Telemetry.update();
     RobotMap.diffDrive.tankDrive(
       RobotMap.leftController.drive(RobotMap.joystick.getRawAxis(1)), 
       RobotMap.rightController.drive(RobotMap.joystick.getRawAxis(5))
