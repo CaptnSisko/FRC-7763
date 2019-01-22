@@ -111,9 +111,9 @@ public class DriveControl {
     private double processInput(double val) {
         //double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
         if (Math.abs(val) < dzn) return 0;
-        double outVal = Math.pow(Math.abs(val), pow) * (1 - ofs) + ofs;
+        double outVal = Math.pow(Math.abs(val-dzn), pow) * (1 - ofs)/Math.pow(1-dzn, pow) + ofs;
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
-        outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking
+        outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking, mathematically redundant but here for safety
         System.out.println(outVal);
         return outVal;
     }
