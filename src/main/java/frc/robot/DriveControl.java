@@ -53,6 +53,10 @@ public class DriveControl {
         ofs = offset;
     }
 
+    public void setDeadzone(double dead) {
+        dzn = dead;
+    }
+
     public void setAcceleration(double constant, double proportional) {
         accCon = Math.abs(constant);
         accPro = Math.abs(proportional);
