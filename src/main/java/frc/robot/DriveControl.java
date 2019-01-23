@@ -24,22 +24,22 @@ public class DriveControl {
     private double cnt = 0;  // current value
 
     public DriveControl() {  // default constructor
-        pow = 1;
-        ofs = 0.2;
-        dzn = 0.1;
-        accCon = 0.5;  // TODO: pick better defaults
-        accPro = 0.5;
+        pow = RobotMap.POWER;
+        ofs = RobotMap.OFFSET;
+        dzn = RobotMap.DEADZONE;
+        accCon = RobotMap.CONST_ACCEL;
+        accPro = RobotMap.PROP_ACCEL;
     }
 
     /** 
-     *constructor that sets drive parameters
+     *constructor that sets custom drive parameters
      */
-    public DriveControl(double power, double offset, double dead, double constant, double proportional) {
-        pow = power;
-        ofs = offset;
-        dzn = dead;
-        accCon = Math.abs(constant);
-        accPro = Math.abs(proportional);
+    public DriveControl(double pow, double ofs, double dzn, double accCon, double accPro) {
+        this.pow = pow;
+        this.ofs = ofs;
+        this.dzn = dzn;
+        this.accCon = Math.abs(accCon);
+        this.accPro = Math.abs(accPro);
     }
     
     /**
