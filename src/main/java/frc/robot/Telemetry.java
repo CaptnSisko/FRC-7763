@@ -20,23 +20,23 @@ import java.util.Map;
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
         .add("Offset", RobotMap.OFFSET)
-        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
         pow = Shuffleboard.getTab("Drive Control")
         .add("Power", RobotMap.POWER)
-        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
         dzn = Shuffleboard.getTab("Drive Control")
         .add("Dead Zone", RobotMap.DEADZONE)
-        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
         accCon = Shuffleboard.getTab("Drive Control")
         .add("Constant Accelecation", RobotMap.CONST_ACCEL)
-        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
         accPro = Shuffleboard.getTab("Drive Control")
         .add("Proportional Accelecation", RobotMap.PROP_ACCEL)
-        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
 
         Shuffleboard.getTab("Drive Control")

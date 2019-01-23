@@ -32,14 +32,14 @@ public class DriveControl {
     }
 
     /** 
-     *constructor that sets drive parameters
+     *constructor that sets custom drive parameters
      */
-    public DriveControl(double power, double offset, double dead, double constant, double proportional) {
-        pow = power;
-        ofs = offset;
-        dzn = dead;
-        accCon = Math.abs(constant);
-        accPro = Math.abs(proportional);
+    public DriveControl(double pow, double ofs, double dzn, double accCon, double accPro) {
+        this.pow = pow;
+        this.ofs = ofs;
+        this.dzn = dzn;
+        this.accCon = Math.abs(accCon);
+        this.accPro = Math.abs(accPro);
     }
     
     /**
