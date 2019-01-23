@@ -18,14 +18,17 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
+  Runnable vision = new Vision();
+
   @Override
   public void robotInit() {
-    new Vision().run();
+    //new Vision().run();
     //CameraServer.getInstance().startAutomaticCapture();
   }
 
   @Override
   public void teleopInit() {
+    vision.run();
     RobotMap.init();
     Telemetry.init();
   }
@@ -37,5 +40,9 @@ public class Robot extends TimedRobot {
       RobotMap.leftController.drive(RobotMap.joystick.getRawAxis(1)), 
       RobotMap.rightController.drive(RobotMap.joystick.getRawAxis(5))
       );
+  }
+
+  @Override
+  public void disabledInit() {
   }
 }
