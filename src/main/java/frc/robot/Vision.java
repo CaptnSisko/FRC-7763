@@ -13,10 +13,7 @@ public class Vision implements Runnable{
     public void run() {
 
         UsbCamera lifeCam = CameraServer.getInstance().startAutomaticCapture();
-        // lifeCam.setResolution(640, 480);
-
-
-
+        lifeCam.setResolution(640, 480);
     }
 
  }

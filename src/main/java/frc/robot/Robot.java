@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
-    // new Vision().run();
-    CameraServer.getInstance().startAutomaticCapture();
+    new Vision().run();
+    //CameraServer.getInstance().startAutomaticCapture();
   }
 
   @Override
