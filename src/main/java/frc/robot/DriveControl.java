@@ -24,11 +24,11 @@ public class DriveControl {
     private double cnt = 0;  // current value
 
     public DriveControl() {  // default constructor
-        pow = 1;
-        ofs = 0.2;
-        dzn = 0.1;
-        accCon = 0.5;  // TODO: pick better defaults
-        accPro = 0.5;
+        pow = RobotMap.POWER;
+        ofs = RobotMap.OFFSET;
+        dzn = RobotMap.DEADZONE;
+        accCon = RobotMap.CONST_ACCEL;
+        accPro = RobotMap.PROP_ACCEL;
     }
 
     /** 
@@ -75,10 +75,6 @@ public class DriveControl {
      * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
-        accCon = Telemetry.getAccConstant();
-        accPro = Telemetry.getAccProportion();
-        pow = Telemetry.getPower();
-        ofs = Telemetry.getOffset();
         inc = accCon + Math.abs(cnt - tgt) * accPro;
         if (Math.abs(cnt - tgt) < accCon) {
             cnt = tgt;

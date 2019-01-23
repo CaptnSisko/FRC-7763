@@ -14,32 +14,29 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import java.util.Map;
 
  public final class Telemetry {
-
-
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, accCon, accPro;
-    private static NetworkTableEntry test = Shuffleboard.getTab("Drive Control").add("test", 0.0).getEntry();
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
-        .add("Offset", 1.0)
+        .add("Offset", RobotMap.OFFSET)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", -1.0, "max", 1.0))
         .getEntry();
         pow = Shuffleboard.getTab("Drive Control")
-        .add("Power", 2.0)
+        .add("Power", RobotMap.POWER)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 1.0, "max", 5.0))
+        .getEntry();
+        dzn = Shuffleboard.getTab("Drive Control")
+        .add("Dead Zone", RobotMap.DEADZONE)
+        .withWidget(BuiltInWidgets.kNumberSlider)
         .getEntry();
         accCon = Shuffleboard.getTab("Drive Control")
-        .add("Constant Accelecation", 0.5)
+        .add("Constant Accelecation", RobotMap.CONST_ACCEL)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0.0, "max", 2.0))
         .getEntry();
         accPro = Shuffleboard.getTab("Drive Control")
-        .add("Proportional Accelecation", 0.5)
+        .add("Proportional Accelecation", RobotMap.PROP_ACCEL)
         .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0.0, "max", 2.0))
         .getEntry();
 
         Shuffleboard.getTab("Drive Control")
@@ -48,7 +45,15 @@ import java.util.Map;
     }
 
     public static void update() {
-        test.setDouble(pow.getValue().getDouble());
+        RobotMap.leftController.setOffset(getOffset());
+        RobotMap.leftController.setPow(getPower());
+        RobotMap.leftController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.leftController.setDeadzone(getDeadZone());
+
+        RobotMap.rightController.setOffset(getOffset());
+        RobotMap.rightController.setPow(getPower());
+        RobotMap.rightController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.rightController.setDeadzone(getDeadZone());
     }
 
     public static double getOffset() {
@@ -65,5 +70,9 @@ import java.util.Map;
 
     public static double getAccProportion() {
         return accPro.getValue().getDouble();
+    }
+
+    public static double getDeadZone() {
+        return dzn.getValue().getDouble();
     }
  }
