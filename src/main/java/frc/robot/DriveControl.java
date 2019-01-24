@@ -24,22 +24,22 @@ public class DriveControl {
     private double cnt = 0;  // current value
 
     public DriveControl() {  // default constructor
-        pow = 1;
-        ofs = 0.2;
-        dzn = 0.1;
-        accCon = 0.5;  // TODO: pick better defaults
-        accPro = 0.5;
+        pow = RobotMap.POWER;
+        ofs = RobotMap.OFFSET;
+        dzn = RobotMap.DEADZONE;
+        accCon = RobotMap.CONST_ACCEL;
+        accPro = RobotMap.PROP_ACCEL;
     }
 
     /** 
-     *constructor that sets drive parameters
+     *constructor that sets custom drive parameters
      */
-    public DriveControl(double power, double offset, double dead, double constant, double proportional) {
-        pow = power;
-        ofs = offset;
-        dzn = dead;
-        accCon = Math.abs(constant);
-        accPro = Math.abs(proportional);
+    public DriveControl(double pow, double ofs, double dzn, double accCon, double accPro) {
+        this.pow = pow;
+        this.ofs = ofs;
+        this.dzn = dzn;
+        this.accCon = Math.abs(accCon);
+        this.accPro = Math.abs(accPro);
     }
     
     /**
@@ -75,10 +75,6 @@ public class DriveControl {
      * acc is proportion of remaining distance to target that a step will cover
      */
     private double update() {
-        accCon = Telemetry.getAccConstant();
-        accPro = Telemetry.getAccProportion();
-        pow = Telemetry.getPower();
-        ofs = Telemetry.getOffset();
         inc = accCon + Math.abs(cnt - tgt) * accPro;
         if (Math.abs(cnt - tgt) < accCon) {
             cnt = tgt;
@@ -111,10 +107,9 @@ public class DriveControl {
     private double processInput(double val) {
         //double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
         if (Math.abs(val) < dzn) return 0;
-        double outVal = Math.pow(Math.abs(val-dzn), pow) * (1 - ofs)/Math.pow(1-dzn, pow) + ofs;
+        double outVal = Math.pow(Math.abs(val)-dzn, pow) * ((1.0 - ofs)/Math.pow(1.0-dzn, pow)) + ofs;
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
         outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking, mathematically redundant but here for safety
-        System.out.println(outVal);
         return outVal;
     }
 }

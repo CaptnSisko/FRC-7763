@@ -8,6 +8,9 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.*;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.*;
 
@@ -23,23 +26,29 @@ public final class RobotMap {
     private static SpeedControllerGroup leftDrive = new SpeedControllerGroup(motorFL, motorRL);
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
 
-    public static Joystick joystick = new Joystick(0);
-    public static DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
+    private static UsbCamera camera;
+
+    public static final Joystick joystick = new Joystick(0);
+    public static final DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
 
     /**
      * TO DO:
      * better defaults
      * shuffleboard adjustability
      */
-    public static double power = 3;
-    public static double offset = 0.05;
-    public static double deadZone = 0.05;
-    public static double constAccel = 0.1;
-    public static double propAccel = 0.2;
-    public static DriveControl leftController = new DriveControl(power, offset, deadZone, constAccel, propAccel);
-    public static DriveControl rightController = new DriveControl(power, offset, deadZone, constAccel, propAccel);
+    public static final double POWER = 2;
+    public static final double OFFSET = 0.28;
+    public static final double DEADZONE = 0.05;
+    public static final double CONST_ACCEL = 0.1;
+    public static final double PROP_ACCEL = 0.2;
+    public static final DriveControl leftController = new DriveControl();
+    public static final DriveControl rightController = new DriveControl();
 
     public static void init() {
+        camera = CameraServer.getInstance().startAutomaticCapture();
+        camera.setResolution(320, 240);
+        camera.setFPS(30);
+
         motorFL.configFactoryDefault();
         motorRL.configFactoryDefault();
         motorFR.configFactoryDefault();
@@ -49,5 +58,9 @@ public final class RobotMap {
         motorRL.setInverted(true);
 
         diffDrive.setRightSideInverted(false); // true by default
+    }
+
+    public static UsbCamera getCamera() {
+        return camera;
     }
 }

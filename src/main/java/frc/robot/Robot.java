@@ -17,11 +17,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
+  @Override
+  public void robotInit() {
+    RobotMap.init();
+    Telemetry.init();
+  }
 
   @Override
   public void teleopInit() {
-    RobotMap.init();
-    Telemetry.init();
+
   }
 
   @Override
@@ -31,5 +35,10 @@ public class Robot extends TimedRobot {
       RobotMap.leftController.drive(RobotMap.joystick.getRawAxis(1)), 
       RobotMap.rightController.drive(RobotMap.joystick.getRawAxis(5))
       );
+  }
+
+  @Override
+  public void disabledInit() {
+    //RobotMap.getCamera().close();
   }
 }
