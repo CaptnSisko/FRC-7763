@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -33,6 +33,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         .add("Proportional Accelecation", RobotMap.PROP_ACCEL)
         .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
+        arcade = Shuffleboard.getTab("Drive Control")
+        .add("Tank Drive", RobotMap.arcade)
+        .withWidget(BuiltInWidgets.kToggleSwitch)
+        .getEntry();
 
         Shuffleboard.getTab("Information")
         .add("Drive Base", RobotMap.diffDrive)
@@ -43,34 +47,51 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
     }
 
     public static void update() {
-        RobotMap.leftController.setOffset(getOffset());
-        RobotMap.leftController.setPow(getPower());
-        RobotMap.leftController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.leftController.setDeadzone(getDeadZone());
+        RobotMap.tank_leftController.setOffset(getOffset());
+        RobotMap.tank_leftController.setPow(getPower());
+        RobotMap.tank_leftController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.tank_leftController.setDeadzone(getDeadZone());
 
-        RobotMap.rightController.setOffset(getOffset());
-        RobotMap.rightController.setPow(getPower());
-        RobotMap.rightController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.rightController.setDeadzone(getDeadZone());
+        RobotMap.tank_rightController.setOffset(getOffset());
+        RobotMap.tank_rightController.setPow(getPower());
+        RobotMap.tank_rightController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.tank_rightController.setDeadzone(getDeadZone());
+
+        RobotMap.arcade_forwardController.setOffset(getOffset());
+        RobotMap.arcade_forwardController.setPow(getPower());
+        RobotMap.arcade_forwardController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.arcade_forwardController.setDeadzone(getDeadZone());
+
+        RobotMap.arcade_turnController.setOffset(getOffset());
+        RobotMap.arcade_turnController.setPow(getPower());
+        RobotMap.arcade_turnController.setAcceleration(getAccConstant(), getAccProportion());
+        RobotMap.arcade_turnController.setDeadzone(getDeadZone());
+
+        RobotMap.arcade = getArcade();
+        //System.out.println(RobotMap.arcade);
     }
 
     public static double getOffset() {
-        return offset.getValue().getDouble();
+        return offset.getDouble(RobotMap.OFFSET);
     }
 
     public static double getPower() {
-        return pow.getValue().getDouble();
+        return pow.getDouble(RobotMap.POWER);
     }
 
     public static double getAccConstant() {
-        return accCon.getValue().getDouble();
+        return accCon.getDouble(RobotMap.CONST_ACCEL);
     }
 
     public static double getAccProportion() {
-        return accPro.getValue().getDouble();
+        return accPro.getDouble(RobotMap.PROP_ACCEL);
     }
 
     public static double getDeadZone() {
-        return dzn.getValue().getDouble();
+        return dzn.getDouble(RobotMap.DEADZONE);
+    }
+
+    public static boolean getArcade() {
+        return arcade.getBoolean(RobotMap.arcade);
     }
  }

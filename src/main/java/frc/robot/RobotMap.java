@@ -41,8 +41,12 @@ public final class RobotMap {
     public static final double DEADZONE = 0.05;
     public static final double CONST_ACCEL = 0.1;
     public static final double PROP_ACCEL = 0.2;
-    public static final DriveControl leftController = new DriveControl();
-    public static final DriveControl rightController = new DriveControl();
+    public static final DriveControl tank_leftController = new DriveControl();
+    public static final DriveControl tank_rightController = new DriveControl();
+    public static final DriveControl arcade_forwardController = new DriveControl();
+    public static final DriveControl arcade_turnController = new DriveControl();
+    
+    public static boolean arcade = true;
 
     public static void init() {
         camera = CameraServer.getInstance().startAutomaticCapture();
@@ -54,10 +58,10 @@ public final class RobotMap {
         motorFR.configFactoryDefault();
         motorRR.configFactoryDefault();
 
-        motorFL.setInverted(true);
-        motorRL.setInverted(true);
+        //motorFL.setInverted(true);
+        //motorRL.setInverted(true);
 
-        diffDrive.setRightSideInverted(false); // true by default
+        //diffDrive.setRightSideInverted(false); // true by default
     }
 
     public static UsbCamera getCamera() {

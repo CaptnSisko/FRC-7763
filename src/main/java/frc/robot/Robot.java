@@ -31,10 +31,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Telemetry.update();
-    RobotMap.diffDrive.tankDrive(
-      RobotMap.leftController.drive(RobotMap.joystick.getRawAxis(1)), 
-      RobotMap.rightController.drive(RobotMap.joystick.getRawAxis(5))
+    if (RobotMap.arcade) {
+      RobotMap.diffDrive.tankDrive(
+        RobotMap.tank_leftController.drive(RobotMap.joystick.getRawAxis(1)), 
+        RobotMap.tank_rightController.drive(RobotMap.joystick.getRawAxis(5))
       );
+    } else {
+      RobotMap.diffDrive.arcadeDrive(
+        RobotMap.arcade_forwardController.drive(RobotMap.joystick.getRawAxis(1) * -1),
+        RobotMap.arcade_turnController.drive(RobotMap.joystick.getRawAxis(0)));
+    }
   }
 
   @Override
