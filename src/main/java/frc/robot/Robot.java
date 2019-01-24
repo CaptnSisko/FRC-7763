@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -18,19 +17,15 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
-  Runnable vision = new Vision();
-
   @Override
   public void robotInit() {
-    //new Vision().run();
-    //CameraServer.getInstance().startAutomaticCapture();
+    RobotMap.init();
+    Telemetry.init();
   }
 
   @Override
   public void teleopInit() {
-    vision.run();
-    RobotMap.init();
-    Telemetry.init();
+
   }
 
   @Override
@@ -44,5 +39,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    //RobotMap.getCamera().close();
   }
 }

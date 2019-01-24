@@ -7,11 +7,6 @@ package frc.robot;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.networktables.NetworkTableEntry;
-
-
-import java.util.Map;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
@@ -39,9 +34,12 @@ import java.util.Map;
         .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
 
-        Shuffleboard.getTab("Drive Control")
+        Shuffleboard.getTab("Information")
         .add("Drive Base", RobotMap.diffDrive)
         .withWidget(BuiltInWidgets.kDifferentialDrive);
+        Shuffleboard.getTab("Information")
+        .add("Camera", RobotMap.getCamera())
+        .withWidget(BuiltInWidgets.kCameraStream);
     }
 
     public static void update() {

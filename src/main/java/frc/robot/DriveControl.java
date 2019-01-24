@@ -108,16 +108,6 @@ public class DriveControl {
         //double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
         if (Math.abs(val) < dzn) return 0;
         double outVal = Math.pow(Math.abs(val)-dzn, pow) * ((1.0 - ofs)/Math.pow(1.0-dzn, pow)) + ofs;
-        System.out.print(outVal);
-        System.out.print(",");
-        System.out.print(val);
-        System.out.print(",");
-        System.out.print(dzn);
-        System.out.print(",");
-        System.out.print(pow);
-        System.out.print(",");
-        System.out.print(ofs);
-        System.out.println("");
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
         outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking, mathematically redundant but here for safety
         return outVal;

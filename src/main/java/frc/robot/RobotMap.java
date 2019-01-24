@@ -8,6 +8,9 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.*;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.*;
 
@@ -22,6 +25,8 @@ public final class RobotMap {
 
     private static SpeedControllerGroup leftDrive = new SpeedControllerGroup(motorFL, motorRL);
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
+
+    private static UsbCamera camera;
 
     public static final Joystick joystick = new Joystick(0);
     public static final DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
@@ -40,6 +45,10 @@ public final class RobotMap {
     public static final DriveControl rightController = new DriveControl();
 
     public static void init() {
+        camera = CameraServer.getInstance().startAutomaticCapture();
+        camera.setResolution(320, 240);
+        camera.setFPS(30);
+
         motorFL.configFactoryDefault();
         motorRL.configFactoryDefault();
         motorFR.configFactoryDefault();
@@ -49,5 +58,9 @@ public final class RobotMap {
         motorRL.setInverted(true);
 
         diffDrive.setRightSideInverted(false); // true by default
+    }
+
+    public static UsbCamera getCamera() {
+        return camera;
     }
 }
