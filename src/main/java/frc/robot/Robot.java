@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Telemetry.update();
-    if (RobotMap.arcade) {
+    if (!RobotMap.arcade) {
       RobotMap.diffDrive.tankDrive(
         RobotMap.tank_leftController.drive(RobotMap.joystick.getRawAxis(1)), 
         RobotMap.tank_rightController.drive(RobotMap.joystick.getRawAxis(5))
