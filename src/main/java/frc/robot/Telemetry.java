@@ -47,25 +47,37 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
     }
 
     public static void update() {
-        RobotMap.tank_leftController.setOffset(getOffset());
-        RobotMap.tank_leftController.setPow(getPower());
-        RobotMap.tank_leftController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.tank_leftController.setDeadzone(getDeadZone());
+        RobotMap.tank_leftController.setParams(
+            getPower(), 
+            getOffset(), 
+            getDeadZone(), 
+            getAccConstant(), 
+            getAccProportion()
+            );
 
-        RobotMap.tank_rightController.setOffset(getOffset());
-        RobotMap.tank_rightController.setPow(getPower());
-        RobotMap.tank_rightController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.tank_rightController.setDeadzone(getDeadZone());
+        RobotMap.tank_rightController.setParams(
+            getPower(), 
+            getOffset(), 
+            getDeadZone(), 
+            getAccConstant(), 
+            getAccProportion()
+            );
 
-        RobotMap.arcade_forwardController.setOffset(getOffset());
-        RobotMap.arcade_forwardController.setPow(getPower());
-        RobotMap.arcade_forwardController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.arcade_forwardController.setDeadzone(getDeadZone());
+        RobotMap.arcade_forwardController.setParams(
+            getPower(), 
+            getOffset(), 
+            getDeadZone(), 
+            getAccConstant(), 
+            getAccProportion()
+            );
 
-        RobotMap.arcade_turnController.setOffset(getOffset());
-        RobotMap.arcade_turnController.setPow(getPower());
-        RobotMap.arcade_turnController.setAcceleration(getAccConstant(), getAccProportion());
-        RobotMap.arcade_turnController.setDeadzone(getDeadZone());
+        RobotMap.arcade_turnController.setParams(
+            getPower(), 
+            getOffset(), 
+            getDeadZone(), 
+            getAccConstant(), 
+            getAccProportion()
+            );
 
         RobotMap.arcade = getArcade();
         //System.out.println(RobotMap.arcade);
