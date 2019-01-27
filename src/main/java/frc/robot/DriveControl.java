@@ -65,7 +65,7 @@ public class DriveControl {
     public void setParams(double power, double offset, double dead, double constant, double proportional) {
         this.setPow(power);
         this.setOffset(offset);
-        this.setDeadzon(dead);
+        this.setDeadzone(dead);
         this.setAcceleration(constant, proportional);
     }
 
