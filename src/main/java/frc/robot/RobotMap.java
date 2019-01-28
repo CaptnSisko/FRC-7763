@@ -34,11 +34,6 @@ public final class RobotMap {
     public static final Joystick joystick = new Joystick(0);
     public static final DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
 
-    /**
-     * TO DO:
-     * better defaults
-     * shuffleboard adjustability
-     */
     public static final double POWER = 2;
     public static final double OFFSET = 0.28;
     public static final double DEADZONE = 0.05;
