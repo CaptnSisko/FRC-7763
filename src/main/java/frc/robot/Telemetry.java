@@ -2,6 +2,11 @@
  * this class is to be used for communicating with the frive station via shuffleboard
  */
 
+ /**
+ * @author
+ * FRC Team 7763 Carrborobotics
+ */
+
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTableEntry;

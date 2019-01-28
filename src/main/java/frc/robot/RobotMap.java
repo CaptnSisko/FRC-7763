@@ -5,6 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * @author
+ * FRC Team 7763 Carrborobotics
+ */
+
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -19,7 +24,8 @@ import edu.wpi.first.wpilibj.drive.*;
  */
 public final class RobotMap {
     /**
-     * TO DO: assign correct motor IDs
+     * @TODO
+     * assign correct motor IDs
      */
     private static WPI_VictorSPX motorFL = new WPI_VictorSPX(1);
     private static WPI_VictorSPX motorRL = new WPI_VictorSPX(2);
