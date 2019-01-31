@@ -46,7 +46,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         .withWidget(BuiltInWidgets.kCameraStream);
 
         //distance sensor
-        distance = Shuffleboard.getTab("Information").add("distance", RobotMap.distSensor.getVoltage()).getEntry();
+        distance = Shuffleboard.getTab("Information").add("distance", voltsToDist(RobotMap.distSensor.getVoltage())).getEntry();
     }
 
     public static void update() {
@@ -85,7 +85,12 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         RobotMap.arcade = getArcade();
         //System.out.println(RobotMap.arcade);
         
-        distance.setDouble(RobotMap.distSensor.getVoltage());
+        distance.setDouble(voltsToDist(RobotMap.distSensor.getVoltage()));
+    }
+    
+    // For use with MB1010 LV-MaxSonar-EZ1 sensor. Distance returned is in mm.
+    private static double voltsToDist(double volts) {
+        return 5 * (volts / 3.3);
     }
 
     public static double getOffset() {
