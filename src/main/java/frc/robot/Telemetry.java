@@ -90,7 +90,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
     
     // For use with MB1010 LV-MaxSonar-EZ1 sensor. Distance returned is in mm.
     private static double voltsToDist(double volts) {
-        return 5 * (volts / 3.3);
+        double dist = 3.0 * 5.0 * (volts / (5.0 / 1024.0));  // * 3.0 is for calibration. not sure why it needs this?
+        System.out.print(volts);
+        System.out.print(", ");
+        System.out.println(dist);
+        return dist;
     }
 
     public static double getOffset() {
