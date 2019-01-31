@@ -31,6 +31,9 @@ public final class RobotMap {
     public static final Joystick joystick = new Joystick(0);
     public static final DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
 
+    //ultrasonic sensor
+    public static final AnalogInput distSensor = new AnalogInput(0);
+
     /**
      * TO DO:
      * better defaults
