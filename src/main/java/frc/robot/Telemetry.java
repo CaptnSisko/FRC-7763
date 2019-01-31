@@ -44,10 +44,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         Shuffleboard.getTab("Information")
         .add("Camera", RobotMap.getCamera())
         .withWidget(BuiltInWidgets.kCameraStream);
-
-        //distance sensor
-        Shuffleboard.getTab("Information")
-        .add("distance", RobotMap.distSensor.getVoltage());
     }
 
     public static void update() {
@@ -85,6 +81,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
         RobotMap.arcade = getArcade();
         //System.out.println(RobotMap.arcade);
+
+        //distance sensor
+        Shuffleboard.getTab("Information")
+        .add("distance", RobotMap.distSensor.getVoltage());
     }
 
     public static double getOffset() {
