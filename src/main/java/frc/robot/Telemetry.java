@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade, distance;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -44,6 +44,9 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         Shuffleboard.getTab("Information")
         .add("Camera", RobotMap.getCamera())
         .withWidget(BuiltInWidgets.kCameraStream);
+
+        //distance sensor
+        distance = Shuffleboard.getTab("Information").add("distance", RobotMap.distSensor.getVoltage()).getEntry();
     }
 
     public static void update() {
@@ -81,10 +84,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
         RobotMap.arcade = getArcade();
         //System.out.println(RobotMap.arcade);
-
-        //distance sensor
-        Shuffleboard.getTab("Information")
-        .add("distance", RobotMap.distSensor.getVoltage());
+        
+        distance.setDouble(RobotMap.distSensor.getVoltage());
     }
 
     public static double getOffset() {
