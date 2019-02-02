@@ -27,10 +27,10 @@ public final class RobotMap {
      * @TODO
      * assign correct motor IDs
      */
-    private static WPI_VictorSPX motorFL = new WPI_VictorSPX(1);
-    private static WPI_VictorSPX motorRL = new WPI_VictorSPX(2);
-    private static WPI_VictorSPX motorFR = new WPI_VictorSPX(3);
-    private static WPI_VictorSPX motorRR = new WPI_VictorSPX(4);
+    private static WPI_VictorSPX motorFL = new WPI_VictorSPX(0);
+    private static WPI_VictorSPX motorRL = new WPI_VictorSPX(1);
+    private static WPI_VictorSPX motorFR = new WPI_VictorSPX(2);
+    private static WPI_VictorSPX motorRR = new WPI_VictorSPX(3);
 
     private static SpeedControllerGroup leftDrive = new SpeedControllerGroup(motorFL, motorRL);
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
