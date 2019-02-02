@@ -5,6 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * @author
+ * FRC Team 7763 Carrborobotics
+ */
+
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -18,10 +23,14 @@ import edu.wpi.first.wpilibj.drive.*;
  * Class to contain all robot parts. Increases organization and reduces occurances of magic numbers.
  */
 public final class RobotMap {
-    private static WPI_TalonSRX motorFL = new WPI_TalonSRX(1);
-    private static WPI_TalonSRX motorRL = new WPI_TalonSRX(2);
-    private static WPI_TalonSRX motorFR = new WPI_TalonSRX(3);
-    private static WPI_TalonSRX motorRR = new WPI_TalonSRX(4);
+    /**
+     * @TODO
+     * assign correct motor IDs
+     */
+    private static WPI_VictorSPX motorFL = new WPI_VictorSPX(0);
+    private static WPI_VictorSPX motorRL = new WPI_VictorSPX(1);
+    private static WPI_VictorSPX motorFR = new WPI_VictorSPX(2);
+    private static WPI_VictorSPX motorRR = new WPI_VictorSPX(3);
 
     private static SpeedControllerGroup leftDrive = new SpeedControllerGroup(motorFL, motorRL);
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
@@ -33,12 +42,7 @@ public final class RobotMap {
 
     //ultrasonic sensor
     public static final AnalogInput distSensor = new AnalogInput(0);
-
-    /**
-     * TO DO:
-     * better defaults
-     * shuffleboard adjustability
-     */
+  
     public static final double POWER = 2;
     public static final double OFFSET = 0.28;
     public static final double DEADZONE = 0.05;
