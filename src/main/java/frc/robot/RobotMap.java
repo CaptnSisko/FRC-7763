@@ -41,7 +41,9 @@ public final class RobotMap {
     public static final DifferentialDrive diffDrive = new DifferentialDrive(leftDrive, rightDrive);
 
     //ultrasonic sensor
-    public static final AnalogInput distSensor = new AnalogInput(0);
+    public static final AnalogInput distInput = new AnalogInput(0);
+    public static final int READING_COUNT = 25;
+    public static final UltrasonicSensor distSensor = new UltrasonicSensor(distInput, READING_COUNT);
   
     public static final double POWER = 2;
     public static final double OFFSET = 0.28;
