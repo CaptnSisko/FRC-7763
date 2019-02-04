@@ -2,6 +2,11 @@
  * this class is to be used for communicating with the frive station via shuffleboard
  */
 
+ /**
+ * @author
+ * FRC Team 7763 Carrborobotics
+ */
+
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -10,7 +15,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade, distance;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -44,6 +49,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         Shuffleboard.getTab("Information")
         .add("Camera", RobotMap.getCamera())
         .withWidget(BuiltInWidgets.kCameraStream);
+
+        //distance sensor
+        distance = Shuffleboard.getTab("Information").add("distance", RobotMap.distSensor.read()).getEntry();
+        
     }
 
     public static void update() {
@@ -81,7 +90,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
         RobotMap.arcade = getArcade();
         //System.out.println(RobotMap.arcade);
+        
+        distance.setDouble(RobotMap.distSensor.read());
     }
+    
 
     public static double getOffset() {
         return offset.getDouble(RobotMap.OFFSET);
