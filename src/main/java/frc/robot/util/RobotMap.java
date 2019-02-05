@@ -56,7 +56,7 @@ public final class RobotMap {
     public static final DriveControl arcade_turnController = new DriveControl();
 
     //lift control
-    //public static final [MOTOR CONTROLLER THING];
+    public static final VictorSP liftMotor = new VictorSP(0);
     private static final DigitalInput upperSwitch = new DigitalInput(0);
     private static final DigitalInput lowerSwitch = new DigitalInput(1);
     public static final LiftControl liftController = new LiftControl(upperSwitch, lowerSwitch, false);
