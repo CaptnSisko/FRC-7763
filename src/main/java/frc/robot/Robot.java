@@ -6,8 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 /**
- * @author
- * FRC Team 7763 Carrborobotics
+ * @author FRC Team 7763 Carrborobotics
  */
 
 package frc.robot;
