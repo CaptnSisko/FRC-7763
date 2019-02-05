@@ -23,10 +23,6 @@ import edu.wpi.first.wpilibj.drive.*;
  * Class to contain all robot parts. Increases organization and reduces occurances of magic numbers.
  */
 public final class RobotMap {
-    /**
-     * @TODO
-     * assign correct motor IDs
-     */
     private static WPI_VictorSPX motorFL = new WPI_VictorSPX(0);
     private static WPI_VictorSPX motorRL = new WPI_VictorSPX(1);
     private static WPI_VictorSPX motorFR = new WPI_VictorSPX(2);

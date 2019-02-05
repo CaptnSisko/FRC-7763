@@ -8,13 +8,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Add your docs here.
  */
 public class LiftControl {
 
+    private static Timer time = new Timer();
     private boolean state = false;  // true == up unless inverted
     private boolean inverted = false;
     private boolean prevButton = false;
@@ -23,17 +24,21 @@ public class LiftControl {
     public LiftControl(DigitalInput upSwitch, DigitalInput downSwitch) {
         this.upSwitch = upSwitch;
         this.downSwitch = downSwitch;
+        time.start();
     }
 
     public LiftControl(DigitalInput upSwitch, DigitalInput downSwitch, boolean inverted) {
         this.upSwitch = upSwitch;
         this.downSwitch = downSwitch;
         this.inverted = inverted;
+        time.start();
     }
 
     public double update(boolean btn) {  // returns value to be fed to motor controller
-        if (btn && !prevButton) {
+        if (btn && !prevButton && time.get() > 0.5) {
             state = !state;
+            time.reset();
+            time.start();
         }
         prevButton = btn;
 
@@ -44,5 +49,4 @@ public class LiftControl {
             return state ? 1.0 : -1.0;
         }
     }
-
 }
