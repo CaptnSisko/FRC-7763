@@ -48,6 +48,7 @@ public class Robot extends TimedRobot {
         RobotMap.arcade_forwardController.drive(RobotMap.joystick.getRawAxis(1) * -1),
         RobotMap.arcade_turnController.drive(RobotMap.joystick.getRawAxis(0)));
     }
+    RobotMap.lift.update(RobotMap.joystick.getRawButton(0));
   }
 
   @Override

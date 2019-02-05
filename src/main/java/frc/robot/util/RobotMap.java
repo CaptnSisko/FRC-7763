@@ -13,6 +13,7 @@
 package frc.robot.util;
 
 import frc.robot.contollers.DriveControl;
+import frc.robot.contollers.LiftControl;
 import frc.robot.sensors.UltrasonicSensor;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -53,6 +54,11 @@ public final class RobotMap {
     public static final DriveControl tank_rightController = new DriveControl();
     public static final DriveControl arcade_forwardController = new DriveControl();
     public static final DriveControl arcade_turnController = new DriveControl();
+
+    //lift control
+    private static final DigitalInput upperSwitch = new DigitalInput(0);
+    private static final DigitalInput lowerSwitch = new DigitalInput(1);
+    public static final LiftControl lift = new LiftControl(upperSwitch, lowerSwitch, false);
     
     public static boolean arcade = true;
 
