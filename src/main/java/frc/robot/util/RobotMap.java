@@ -27,10 +27,10 @@ import edu.wpi.first.wpilibj.drive.*;
  * Class to contain all robot parts. Increases organization and reduces occurances of magic numbers.
  */
 public final class RobotMap {
-    private static WPI_VictorSPX motorFL = new WPI_VictorSPX(0);
-    private static WPI_VictorSPX motorRL = new WPI_VictorSPX(1);
-    private static WPI_VictorSPX motorFR = new WPI_VictorSPX(2);
-    private static WPI_VictorSPX motorRR = new WPI_VictorSPX(3);
+    private static final WPI_VictorSPX motorFL = new WPI_VictorSPX(0);
+    private static final WPI_VictorSPX motorRL = new WPI_VictorSPX(1);
+    private static final WPI_VictorSPX motorFR = new WPI_VictorSPX(2);
+    private static final WPI_VictorSPX motorRR = new WPI_VictorSPX(3);
 
     private static SpeedControllerGroup leftDrive = new SpeedControllerGroup(motorFL, motorRL);
     private static SpeedControllerGroup rightDrive = new SpeedControllerGroup(motorFR, motorRR);
@@ -56,9 +56,10 @@ public final class RobotMap {
     public static final DriveControl arcade_turnController = new DriveControl();
 
     //lift control
+    //public static final [MOTOR CONTROLLER THING];
     private static final DigitalInput upperSwitch = new DigitalInput(0);
     private static final DigitalInput lowerSwitch = new DigitalInput(1);
-    public static final LiftControl lift = new LiftControl(upperSwitch, lowerSwitch, false);
+    public static final LiftControl liftController = new LiftControl(upperSwitch, lowerSwitch, false);
     
     public static boolean arcade = true;
 
