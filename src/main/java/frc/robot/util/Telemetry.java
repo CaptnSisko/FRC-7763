@@ -138,23 +138,23 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
     }
 
     public static double turn_getOffset() {
-        return offset.getDouble(RobotMap.OFFSET);
+        return turn_offset.getDouble(RobotMap.OFFSET);
     }
 
     public static double turn_getPower() {
-        return pow.getDouble(RobotMap.POWER);
+        return turn_pow.getDouble(RobotMap.POWER);
     }
 
     public static double turn_getAccConstant() {
-        return accCon.getDouble(RobotMap.CONST_ACCEL);
+        return turn_accCon.getDouble(RobotMap.CONST_ACCEL);
     }
 
     public static double turn_getAccProportion() {
-        return accPro.getDouble(RobotMap.PROP_ACCEL);
+        return turn_accPro.getDouble(RobotMap.PROP_ACCEL);
     }
 
     public static double turn_getDeadZone() {
-        return dzn.getDouble(RobotMap.DEADZONE);
+        return turn_dzn.getDouble(RobotMap.DEADZONE);
     }
 
     public static boolean getArcade() {
