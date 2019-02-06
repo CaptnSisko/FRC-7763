@@ -7,8 +7,6 @@
 
 package frc.robot.util;
 
-import java.sql.Time;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -30,10 +28,18 @@ public class PIDLoop {
     }
 
     public double update(double error) {
-        if (Math.abs(sum) < limit) sum += error * (t.get() - lastTime);
-        double d = (error - lastError) / (t.get() - lastTime);
+        double dt = t.get() - lastTime;
         lastTime = t.get();
+
+        double d = (error - lastError) / dt;
+        if (Math.abs(sum) < limit) sum += error * dt;
         lastError = error;
         return kp*error + ki*sum + kd*d;
+    }
+
+    public void setPID(double kp, double ki, double kd) {
+        this.kp = kp;
+        this.ki = ki;
+        this.kd = kd;
     }
 }
