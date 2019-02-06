@@ -29,7 +29,7 @@ public class PIDLoop {
 
     public double update(double error) {
         double dt = t.get() - lastTime;
-        lastTime = t.get();
+        lastTime += dt;
 
         double d = (error - lastError) / dt;
         if (Math.abs(sum) < limit) sum += error * dt;
