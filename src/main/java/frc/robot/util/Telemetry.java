@@ -7,7 +7,9 @@
  * FRC Team 7763 Carrborobotics
  */
 
-package frc.robot;
+package frc.robot.util;
+
+import frc.robot.util.RobotMap;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;

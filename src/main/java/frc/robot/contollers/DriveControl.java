@@ -10,7 +10,7 @@
  * FRC Team 7763 Carrborobotics
  */
 
-package frc.robot;
+package frc.robot.contollers;
 
 import java.lang.Math;
 

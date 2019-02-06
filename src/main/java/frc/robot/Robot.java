@@ -11,6 +11,9 @@
 
 package frc.robot;
 
+import frc.robot.util.RobotMap;
+import frc.robot.util.Telemetry;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot

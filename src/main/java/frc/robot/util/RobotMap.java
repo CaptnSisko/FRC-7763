@@ -10,7 +10,10 @@
  * FRC Team 7763 Carrborobotics
  */
 
-package frc.robot;
+package frc.robot.util;
+
+import frc.robot.contollers.DriveControl;
+import frc.robot.sensors.UltrasonicSensor;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 
