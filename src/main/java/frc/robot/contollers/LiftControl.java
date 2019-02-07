@@ -42,7 +42,7 @@ public class LiftControl {
         }
         prevButton = btn;
 
-        boolean up = inverted ? state : !state;
+        boolean up = inverted ? !state : state;
         if (up ? !upSwitch.get() : !downSwitch.get()) {
             return 0.0;
         } else {
