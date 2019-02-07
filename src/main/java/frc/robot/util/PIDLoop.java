@@ -10,7 +10,7 @@ package frc.robot.util;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Add your docs here.
+ * Calculates PID Value
  */
 public class PIDLoop {
     private double sum, lastTime, lastError, kp, ki, kd, limit;
