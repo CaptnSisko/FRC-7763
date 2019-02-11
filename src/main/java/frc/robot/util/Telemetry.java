@@ -110,10 +110,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             turn_getAccProportion()
             );
 
-        RobotMap.arcade = getArcade();
-        //System.out.println(RobotMap.arcade);
-        
+        RobotMap.arcade = getArcade();        
         distance.setDouble(RobotMap.distSensor.read());
+        accPro.setDouble(Math.pow((RobotMap.joystick.getRawAxis(3) * -1 + 1.1) / 2.33333333333, 2));
+        turn_accPro.setDouble(Math.pow((RobotMap.joystick.getRawAxis(3) * -1 + 1.1) / 2.33333333333, 2));
     }
     
 
