@@ -46,7 +46,11 @@ public class LiftControl {
         if (up ? !upSwitch.get() : !downSwitch.get()) {
             return 0.0;
         } else {
-            return state ? 1.0 : -1.0;
+            return up ? 1.0 : -1.0;
         }
+    }
+
+    public void setState(boolean up) {
+        state = up ? !inverted : inverted;
     }
 }

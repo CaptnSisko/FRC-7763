@@ -60,6 +60,13 @@ public final class RobotMap {
     private static final DigitalInput upperSwitch = new DigitalInput(0);
     private static final DigitalInput lowerSwitch = new DigitalInput(1);
     public static final LiftControl liftController = new LiftControl(upperSwitch, lowerSwitch, false);
+
+    public static boolean getUpperSwitch() {
+        return upperSwitch.get();
+    }
+    public static boolean getLowerSwitch() {
+        return lowerSwitch.get();
+    }
     
     public static boolean arcade = true;
 
