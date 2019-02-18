@@ -14,6 +14,7 @@ package frc.robot.util;
 
 import frc.robot.contollers.DriveControl;
 import frc.robot.contollers.LiftControl;
+import frc.robot.contollers.RampControl;
 import frc.robot.sensors.UltrasonicSensor;
 
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -69,6 +70,9 @@ public final class RobotMap {
     }
     
     public static boolean arcade = true;
+
+    public static final VictorSP rampMotor = new VictorSP(1);
+    public static final RampControl rampController = new RampControl(false, 1, 0.5);
 
     public static void init() {
         camera = CameraServer.getInstance().startAutomaticCapture();
