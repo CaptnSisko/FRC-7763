@@ -10,7 +10,7 @@ package frc.robot.contollers;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Add your docs here.
+ * Class for controlling ramp deployment
  */
 public class RampControl {
 

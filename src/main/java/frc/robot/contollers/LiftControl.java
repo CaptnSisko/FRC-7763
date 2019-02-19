@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Add your docs here.
+ * Class for controlling lift mechanism
  */
 public class LiftControl {
 
