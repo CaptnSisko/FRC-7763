@@ -53,4 +53,8 @@ public class LiftControl {
     public void setState(boolean up) {
         state = up ? !inverted : inverted;
     }
+
+    public boolean getState() {  // returns true if lift is up acccounting for inverted
+        return inverted ? !state : state;
+    }
 }

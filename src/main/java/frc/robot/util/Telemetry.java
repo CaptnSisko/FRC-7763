@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, turn_offset, turn_pow, turn_dzn, turn_accCon, turn_accPro, arcade, distance;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, turn_offset, turn_pow, turn_dzn, turn_accCon, turn_accPro, arcade, distance, liftState;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -74,6 +74,9 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
         //distance sensor
         distance = Shuffleboard.getTab("Information").add("distance", RobotMap.distSensor.read()).getEntry();
+
+        //lift state
+        liftState = Shuffleboard.getTab("Information").add("Lift State", RobotMap.liftController.getState() ? "up" : "down").getEntry();
         
     }
 
@@ -114,6 +117,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         distance.setDouble(RobotMap.distSensor.read());
         accPro.setDouble(Math.pow((RobotMap.joystick.getRawAxis(3) * -1 + 1.1) / 2.33333333333, 2));
         turn_accPro.setDouble(Math.pow((RobotMap.joystick.getRawAxis(3) * -1 + 1.1) / 2.33333333333, 2));
+        liftState.setString(RobotMap.liftController.getState() ? "up" : "down");
     }
     
 
