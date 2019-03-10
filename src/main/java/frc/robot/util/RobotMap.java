@@ -48,7 +48,7 @@ public final class RobotMap {
   
     public static final double POWER = 2;
     public static final double OFFSET = 0.28;
-    public static final double DEADZONE = 0.05;
+    public static final double DEADZONE = 0.1;
     public static final double CONST_ACCEL = 0.1;
     public static final double PROP_ACCEL = 0.2;
     public static final DriveControl tank_leftController = new DriveControl();
