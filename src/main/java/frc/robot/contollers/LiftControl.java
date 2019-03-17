@@ -19,6 +19,7 @@ public class LiftControl {
     private boolean state = false;  // true == up unless inverted
     private boolean inverted = false;
     private boolean prevButton = false;
+    private boolean manual = false;
     private DigitalInput upSwitch, downSwitch;
 
     public LiftControl(DigitalInput upSwitch, DigitalInput downSwitch) {
@@ -34,7 +35,14 @@ public class LiftControl {
         time.start();
     }
 
-    public double update(boolean btn) {  // returns value to be fed to motor controller
+    public void toManual() {
+        manual = true;
+    }
+
+    public double update(boolean btn, boolean upButton, boolean downButton) {  // returns value to be fed to motor controller
+        if (manual) {
+            return 0.25 * ((upButton ? 1 : 0) - (downButton ? 1 : 0)) * (inverted ? -1 : 1);
+        }
         if (btn && !prevButton && time.get() > 0.5) {
             state = !state;
             time.reset();
