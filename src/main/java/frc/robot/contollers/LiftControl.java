@@ -9,6 +9,7 @@ package frc.robot.contollers;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.util.RobotMap;
 
 /**
  * Class for controlling lift mechanism
@@ -43,6 +44,7 @@ public class LiftControl {
         if (manual) {
             return 0.25 * ((upButton ? 1 : 0) - (downButton ? 1 : 0)) * (inverted ? -1 : 1);
         }
+
         if (btn && !prevButton && time.get() > 0.5) {
             state = !state;
             time.reset();
@@ -51,6 +53,10 @@ public class LiftControl {
         prevButton = btn;
 
         boolean up = inverted ? !state : state;
+
+        //lights (operate only when in auto mode)
+        RobotMap.liftStateOut.set(up);
+
         if (up ? !upSwitch.get() : !downSwitch.get()) {
             return 0.0;
         } else {

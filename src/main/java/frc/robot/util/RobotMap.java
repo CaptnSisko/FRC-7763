@@ -62,6 +62,9 @@ public final class RobotMap {
     private static final DigitalInput lowerSwitch = new DigitalInput(1);
     public static final LiftControl liftController = new LiftControl(upperSwitch, lowerSwitch, false);
 
+    //lights
+    public static final DigitalOutput liftStateOut = new DigitalOutput(9);
+
     public static boolean getUpperSwitch() {
         return upperSwitch.get();
     }
