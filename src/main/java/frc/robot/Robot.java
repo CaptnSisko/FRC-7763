@@ -33,6 +33,15 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     RobotMap.liftController.setState(true);
+    RobotMap.liftInitialized = true;
+  }
+
+  @Override
+  public void teleopInit() {
+    if (!RobotMap.liftInitialized) {
+      RobotMap.liftController.setState(true);
+      RobotMap.liftInitialized = true;
+    }
   }
 
   @Override
