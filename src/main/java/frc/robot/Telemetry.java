@@ -112,7 +112,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
     }
 
     public static double getSpeed() {
-        return speed.getDouble(RobotMap.SPEED)
+        return speed.getDouble(RobotMap.SPEED);
     }
 
     public static boolean getArcade() {
