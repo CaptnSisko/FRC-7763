@@ -22,6 +22,7 @@ public class DriveControl {
     private double inc;  // increment for current step
     private double tgt = 0;  // target value
     private double cnt = 0;  // current value
+    private double speed = 1.0; // speed multiplier
 
     public DriveControl() {  // default constructor
         pow = RobotMap.POWER;
@@ -29,17 +30,19 @@ public class DriveControl {
         dzn = RobotMap.DEADZONE;
         accCon = RobotMap.CONST_ACCEL;
         accPro = RobotMap.PROP_ACCEL;
+        speed = RobotMap.SPEED;
     }
 
     /** 
      *constructor that sets custom drive parameters
      */
-    public DriveControl(double pow, double ofs, double dzn, double accCon, double accPro) {
+    public DriveControl(double pow, double ofs, double dzn, double accCon, double accPro, double speed) {
         this.pow = pow;
         this.ofs = ofs;
         this.dzn = dzn;
         this.accCon = Math.abs(accCon);
         this.accPro = Math.abs(accPro);
+        this.speed = speed;
     }
     
     /**
@@ -57,16 +60,21 @@ public class DriveControl {
         dzn = dead;
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     public void setAcceleration(double constant, double proportional) {
         accCon = Math.abs(constant);
         accPro = Math.abs(proportional);
     }
 
-    public void setParams(double power, double offset, double dead, double constant, double proportional) {
+    public void setParams(double power, double offset, double dead, double constant, double proportional, double speed) {
         this.setPow(power);
         this.setOffset(offset);
         this.setDeadzone(dead);
         this.setAcceleration(constant, proportional);
+        this.setSpeed(speed);
     }
 
     public double getSpeed() {
@@ -115,6 +123,7 @@ public class DriveControl {
         //double outVal = Math.pow(val, pow) * cft;  // raises to power, multiplies by coefficient
         if (Math.abs(val) < dzn) return 0;
         double outVal = Math.pow(Math.abs(val)-dzn, pow) * ((1.0 - ofs)/Math.pow(1.0-dzn, pow)) + ofs;
+        outVal *= speed;
         outVal = Math.copySign(outVal, val);  // sets the sign of the output value to be the same as that of the input
         outVal = Math.min(1, Math.max(-1, outVal));  // bounds checking, mathematically redundant but here for safety
         return outVal;

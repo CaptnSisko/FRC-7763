@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, arcade;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, speed, arcade;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -33,6 +33,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         .add("Proportional Accelecation", RobotMap.PROP_ACCEL)
         .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
+        speed = Shuffleboard.getTab("Drive Control")
+        .add("Proportional Accelecation", RobotMap.SPEED)
+        .withWidget(BuiltInWidgets.kTextView)
+        .getEntry();
         arcade = Shuffleboard.getTab("Drive Control")
         .add("Tank Drive", RobotMap.arcade)
         .withWidget(BuiltInWidgets.kToggleSwitch)
@@ -52,7 +56,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            getSpeed()
             );
 
         RobotMap.tank_rightController.setParams(
@@ -60,7 +65,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            getSpeed()
             );
 
         RobotMap.arcade_forwardController.setParams(
@@ -68,7 +74,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            getSpeed()
             );
 
         RobotMap.arcade_turnController.setParams(
@@ -76,7 +83,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            getSpeed()
             );
 
         RobotMap.arcade = getArcade();
@@ -101,6 +109,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
     public static double getDeadZone() {
         return dzn.getDouble(RobotMap.DEADZONE);
+    }
+
+    public static double getSpeed() {
+        return speed.getDouble(RobotMap.SPEED)
     }
 
     public static boolean getArcade() {
