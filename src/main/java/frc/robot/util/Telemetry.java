@@ -9,6 +9,7 @@
 
 package frc.robot.util;
 
+import frc.robot.contollers.DriveControl;
 import frc.robot.util.RobotMap;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
  public final class Telemetry {
     //private static ShuffleboardTab DriveControl = Shuffleboard.getTab("Drive Control");
-    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, turn_offset, turn_pow, turn_dzn, turn_accCon, turn_accPro, arcade, distance, liftState;
+    private static NetworkTableEntry offset, pow, dzn, accCon, accPro, turn_offset, turn_pow, turn_dzn, turn_accCon, turn_accPro, arcade, distance, liftState, spd;
 
     public static void init() {
         offset = Shuffleboard.getTab("Drive Control")
@@ -64,6 +65,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
         .add("Turn Proportional Accelecation", RobotMap.PROP_ACCEL)
         .withWidget(BuiltInWidgets.kTextView)
         .getEntry();
+        spd = Shuffleboard.getTab("Drive Control")
+        .add("Speed Multiplier", RobotMap.SPEED)
+        .withWidget(BuiltInWidgets.kTextView)
+        .getEntry();
+
 
         Shuffleboard.getTab("Information")
         .add("Drive Base", RobotMap.diffDrive)
@@ -86,7 +92,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            spd.getDouble(RobotMap.SPEED)
             );
 
         RobotMap.tank_rightController.setParams(
@@ -94,7 +101,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            spd.getDouble(RobotMap.SPEED)
             );
 
         RobotMap.arcade_forwardController.setParams(
@@ -102,7 +110,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             getOffset(), 
             getDeadZone(), 
             getAccConstant(), 
-            getAccProportion()
+            getAccProportion(),
+            spd.getDouble(RobotMap.SPEED)
             );
 
         RobotMap.arcade_turnController.setParams(
@@ -110,7 +119,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
             turn_getOffset(), 
             turn_getDeadZone(), 
             turn_getAccConstant(), 
-            turn_getAccProportion()
+            turn_getAccProportion(),
+            spd.getDouble(RobotMap.SPEED)
             );
 
         RobotMap.arcade = getArcade();        
