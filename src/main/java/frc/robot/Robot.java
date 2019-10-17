@@ -5,7 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * @author FRC Team 7763 Carrborobotics
+ */
+
 package frc.robot;
+
+import frc.robot.util.RobotMap;
+import frc.robot.util.Telemetry;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -14,47 +21,58 @@ package frc.robot;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.drive.*;
+import edu.wpi.first.wpilibj.TimedRobot;
 
 public class Robot extends TimedRobot {
-  WPI_TalonSRX _talonFL = new WPI_TalonSRX(1);
-  WPI_TalonSRX _talonRL = new WPI_TalonSRX(2);
-  SpeedControllerGroup leftDrive = new SpeedControllerGroup(_talonFL, _talonRL);
-  WPI_TalonSRX _talonFR = new WPI_TalonSRX(3);
-  WPI_TalonSRX _talonRR = new WPI_TalonSRX(4);
-  SpeedControllerGroup rightDrive = new SpeedControllerGroup(_talonFR, _talonRR);
+  @Override
+  public void robotInit() {
+    RobotMap.init();
+    Telemetry.init();
+  }
 
-  DifferentialDrive _drive = new DifferentialDrive(leftDrive, rightDrive);
-  Joystick _joystick = new Joystick(0);
+  @Override
+  public void autonomousInit() {
+    RobotMap.liftController.setState(true);
+    RobotMap.liftInitialized = true;
+  }
 
   @Override
   public void teleopInit() {
-    /* factory default values */
-    _talonFL.configFactoryDefault();
-    _talonRL.configFactoryDefault();
-    _talonFR.configFactoryDefault();
-    _talonRR.configFactoryDefault();
+    if (!RobotMap.liftInitialized) {
+      RobotMap.liftController.setState(true);
+      RobotMap.liftInitialized = true;
+    }
+  }
 
-    /* flip values so robot moves forward when stick-forward/LEDs-green */
-    _talonFL.setInverted(true); // <<<<<< Adjust this
-    _talonRL.setInverted(true); // <<<<<< Adjust this
-
-    //_talonR.setInverted(true); // <<<<<< Adjust this
-
-    /*
-     * WPI drivetrain classes defaultly assume left and right are opposite. call
-     * this so we can apply + to both sides when moving forward. DO NOT CHANGE
-     */
-    _drive.setRightSideInverted(false);
+  @Override
+  public void autonomousPeriodic() {
+    teleopPeriodic();
   }
 
   @Override
   public void teleopPeriodic() {
-    _drive.tankDrive(_joystick.getRawAxis(1), _joystick.getRawAxis(5));
+    Telemetry.update();
+    if (!RobotMap.arcade) {
+      RobotMap.diffDrive.tankDrive(
+        RobotMap.tank_leftController.drive(RobotMap.joystick.getRawAxis(1)), 
+        RobotMap.tank_rightController.drive(RobotMap.joystick.getRawAxis(5))
+      );
+    } else {
+      RobotMap.diffDrive.arcadeDrive(
+        RobotMap.arcade_forwardController.drive(RobotMap.joystick.getRawAxis(1) * -1),
+        RobotMap.arcade_turnController.drive(RobotMap.joystick.getRawAxis(0)));
+    }
+    if (RobotMap.joystick.getRawButton(8)){
+      RobotMap.liftController.toManual();
+    }
+    RobotMap.liftMotor.set(RobotMap.liftController.update(RobotMap.joystick.getRawButton(1), 
+                                                          RobotMap.joystick.getRawButton(5), 
+                                                          RobotMap.joystick.getRawButton(3)));
+    // RobotMap.rampMotor.set(RobotMap.rampController.update(RobotMap.joystick.getRawButton(7)));
+  }
 
-    /* hold down btn1 to print stick values */
-    //System.out.println("Hello World");
+  @Override
+  public void disabledInit() {
+    //RobotMap.getCamera().close();
   }
 }
